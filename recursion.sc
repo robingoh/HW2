@@ -74,7 +74,13 @@ object recursion {
   hyperExp(2)
   hyperExp(3)
   hyperExp(4)
+  try {
+    hyperExp(5)
+  } catch {
+    case e: StackOverflowError => println(e + " at hyperExp(5)")
+  }
 
   //++++++++++++++++++++
   // problem 5
+
 }
