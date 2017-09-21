@@ -8,10 +8,14 @@ object recursion {
   def isZero(n: Int)= n == 0
 
   // problem 1
-  def add(n: Int, m: Int) : Int = {
-    0
-  }
-
+  def add(n: Int, m: Int) : Int =
+    if (isZero(m)) n else add(inc(n), dec(m))
 
   // tests:
+  add(3, 15)
+  add(0, 24)
+  add(17, 0)
+  add(8, 3)
+
+
 }
