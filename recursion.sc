@@ -48,6 +48,7 @@ object recursion {
   def exp2(m: Int): Int = if (isZero(m)) 1 else mul(2, exp2(dec(m)))
 
   // tests:
+//  for(i <- 0 until 31) println(exp2(i))
   exp2(0)
   exp2(1)
   exp2(2)
@@ -110,5 +111,28 @@ object recursion {
   // still throws stack overflow error since the result is
   // bigger than (2^31 - 1).
 
+  //++++++++++++++++++++
+  // problem 9
+  // A recursive and tail recursive implementations of the Fibonacci function.
+  def fibRecursive(n: Int): Int =
+    if (isZero(n))
+      0
+    else if (isZero(dec(n)))
+      1
+    else
+      fibRecursive(n-2) + fibRecursive(n-1)
 
+  def fibTailRecursive(n: Int) = {
+    def helper(count: Int, result1: Int, result2: Int) : Int =
+      if (n <= count) result1 else helper(inc(count), result2, add(result1, result2))
+    helper(0, 0, 1)
+  }
+
+  // tests:
+  for(i <- 0 until 10) println(i + ": " + fibRecursive(i))
+  for(i <- 0 until 10) println(i + ": " + fibTailRecursive(i))
+
+  //++++++++++++++++++++
+  // problem 10
+  //
 }
