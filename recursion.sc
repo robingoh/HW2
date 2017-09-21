@@ -4,15 +4,17 @@ object recursion {
 
   // Given definitions from assignment instructions.
   def inc(n: Int) = n + 1
+
   def dec(n: Int) = n - 1
-  def isZero(n: Int)= n == 0
+
+  def isZero(n: Int) = n == 0
 
   //++++++++++++++++++++
   // problem 1
   // A recursive function that solves the addition of
   // two non-negative integers.
   // Definition only use recursion, inc, dec, and isZero
-  def add(n: Int, m: Int) : Int = if (isZero(m)) n else add(inc(n), dec(m))
+  def add(n: Int, m: Int): Int = if (isZero(m)) n else add(inc(n), dec(m))
 
   // tests:
   add(3, 15)
@@ -25,12 +27,12 @@ object recursion {
   // A recursive function that solves the multiplication
   // of two non-negative integers.
   // Definition only use recursion, add, inc, dec, and isZero
-  def mul(n: Int, m: Int) : Int = if (isZero(n)) 0 else add(m, mul(dec(n), m))
+  def mul(n: Int, m: Int): Int = if (isZero(n)) 0 else add(m, mul(dec(n), m))
 
   // tests:
   mul(2, 3)
   mul(3, 8)
-  mul(10,4)
+  mul(10, 4)
   mul(9, 28)
   mul(778, 43)
 
@@ -38,13 +40,9 @@ object recursion {
   // problem 3
   // A recursive function that solves the exponential of
   // 2 to the power m, m is a non-negative integer.
-  // definition only use recursion, add, mul, inc, dec, and isZero
-  def exp2(m: Int) : Int = {
-    if (isZero(m))
-      1
-    else
-      mul(2, exp2(dec(m)))
-  }
+  // Definition only use recursion, add, mul, inc, dec, and isZero
+  def exp2(m: Int): Int = if (isZero(m)) 1 else mul(2, exp2(dec(m)))
+
   // tests:
   exp2(0)
   exp2(1)
@@ -63,8 +61,20 @@ object recursion {
   exp2(14)
   exp2(30)
 
+  //++++++++++++++++++++
+  // problem 4
+  // A recursive hyper-exponentiation function.
+  // Definition should only use recursion, exp2, add,
+  // mul, inc, dec, and isZero
+  def hyperExp(n: Int) : Int = if (isZero(n)) 1 else exp2(hyperExp(dec(n)))
 
+  // tests:
+  hyperExp(0)
+  hyperExp(1)
+  hyperExp(2)
+  hyperExp(3)
+  hyperExp(4)
 
-
-
+  //++++++++++++++++++++
+  // problem 5
 }
