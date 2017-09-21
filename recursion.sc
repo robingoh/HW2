@@ -27,7 +27,11 @@ object recursion {
   // A recursive function that solves the multiplication
   // of two non-negative integers.
   // Definition only use recursion, add, inc, dec, and isZero
-  def mul(n: Int, m: Int): Int = if (isZero(n)) 0 else add(m, mul(dec(n), m))
+  def mul(n: Int, m: Int): Int =
+  if (isZero(n))
+    0
+  else
+    add(m, mul(dec(n), m))
 
   // tests:
   mul(2, 3)
@@ -60,6 +64,7 @@ object recursion {
   exp2(13)
   exp2(14)
   exp2(30)
+  exp2(31)-1
 
   //++++++++++++++++++++
   // problem 4
@@ -82,5 +87,28 @@ object recursion {
 
   //++++++++++++++++++++
   // problem 5
+  // A tail recursive version of problem 4.
+  def hyperExpTail(n: Int) = {
+    def helper(count: Int, result: Int) : Int =
+      if (n < count) result else helper(inc(count), exp2(result))
+    helper(0, 0)
+  }
+
+  // tests:
+  hyperExpTail(0)
+  hyperExpTail(1)
+  hyperExpTail(2)
+  hyperExpTail(3)
+  hyperExpTail(4)
+  try {
+    hyperExpTail(5)
+  } catch {
+    case e: StackOverflowError => println(e + " at hyperExpTail(5)")
+  }
+  // Therefore, the tail recursion version does not improve
+  // the stack overflow problem, since hyperExpTail(5)
+  // still throws stack overflow error since the result is
+  // bigger than (2^31 - 1).
+
 
 }
